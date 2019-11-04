@@ -1,0 +1,48 @@
+<odoo>
+  <data>
+<!--	<record id="view_leads_filter" model="ir.ui.view">
+         <field name="name">Filter leads</field>
+         <field name="model">crm.lead</field>
+         <field name="inherit_id" ref="crm.view_crm_case_leads_filter"/>
+         <field name="arch" type="xml">
+             <xpath expr="//search" position="inside">
+                 <filter name="contact_capital_amount" domain="[('contact_capital_amount','!=', 0)]" context="{'filter':'contact_capital_amount'}"/>
+                 <filter name="contact_capital_share" domain="[('contact_capital_share','!=', 0)]" context="{'filter':'contact_capital_share'}"/>
+             </xpath>
+         </field>
+     </record>-->
+    <!-- form pist -->
+       <record id="crm_lead_capital_forme_view" model="ir.ui.view" >
+       <field name="name">pist_company_rcapital</field>
+       <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+
+       <field name="arch" type="xml">
+        <xpath expr="//page[@name='donnees_administratives_page']" >  
+          <group>              
+           <field name="currency_id"/>
+           <field name="contact_capital_share"   widget="monetary" options="{'currency_field': 'currency_id'}"/>              
+           <field name="contact_capital_amount"  widget="monetary" options="{'currency_field': 'currency_id'}"/>              
+        </group>
+        </xpath>
+       </field>
+    </record>
+
+       <!-- form oppoertunité -->
+     <record id="crm_lead_op_capital_forme_view" model="ir.ui.view" >
+       <field name="name">op_company_capital</field>
+       <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+
+       <field name="arch" type="xml">
+        <xpath expr="//page[@name='donnees_administratives_page']" >   
+          <group> 
+	    <field name="currency_id"/>
+            <field name="contact_capital_share" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+            <field name="contact_capital_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>                        
+          </group>
+        </xpath>
+       </field>
+     </record>
+  </data>
+</odoo>
